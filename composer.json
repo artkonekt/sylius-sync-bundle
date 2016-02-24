@@ -1,0 +1,21 @@
+{
+    "name": "konekt/sylius-sync-bundle",
+    "type": "symfony-bundle",
+    "description": "Bundle for managing synchronization of Sylius data with external sources",
+    "license": "MIT",
+    "keywords": ["sylius"],
+    "authors": [
+        {
+            "name": "Attila Fulop",
+            "email": "attila@artkonekt.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.5.9"
+    },
+    "autoload": {
+        "psr-4": {
+            "Konekt\\SyliusSyncBundle\\": "src"
+        }
+    }
+}
