@@ -1,0 +1,9 @@
+parameters:
+    konekt_sylius_sync.remote_product.class: Konekt\SyliusSyncBundle\Model\Remote\Product
+    konekt_sylius_sync.remote_product.factory.class: Konekt\SyliusSyncBundle\Model\Remote\ProductFactory
+
+services:
+    konekt_sylius_sync.remote_product.factory:
+        class: %konekt_sylius_sync.remote_product.factory.class%
+        arguments:
+            - %konekt_sylius_sync.remote_product.class%

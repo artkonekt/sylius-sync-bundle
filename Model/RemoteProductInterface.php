@@ -59,4 +59,20 @@ interface RemoteProductInterface extends TranslatableInterface, ImageableInterfa
      */
     public function getCatalogPrice();
 
+
+    /**
+     * Returns the attributes set on the product
+     *
+     * @return RemoteAttributeInterface[]
+     */
+    public function getAttributes();
+
+
+    /**
+     * Add an attribute to the product
+     *
+     * @param RemoteAttributeInterface $attribute
+     */
+    public function addAttribute(RemoteAttributeInterface $attribute);
+
 }
