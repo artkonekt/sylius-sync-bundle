@@ -16,11 +16,18 @@ namespace Konekt\SyliusSyncBundle\Model;
 interface TranslatableInterface
 {
     /**
+     * Returns all the translations
+     *
+     * @return  TranslationInterface[]
+     */
+    public function getTranslations();
+
+    /**
      * Returns the translation in a given language
      *
      * @param   string  $lang
      *
-     * @return  TranslationInterface
+     * @return  TranslationInterface|null
      */
 
     public function getTranslation($lang);
@@ -29,8 +36,6 @@ interface TranslatableInterface
      * Adds a new translation
      *
      * @param   TranslationInterface  $translation
-     *
-     * @return  TranslationInterface
      */
     public function addTranslation(TranslationInterface $translation);
 

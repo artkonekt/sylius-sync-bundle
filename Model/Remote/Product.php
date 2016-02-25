@@ -16,11 +16,28 @@ namespace Konekt\SyliusSyncBundle\Model\Remote;
 use Konekt\SyliusSyncBundle\Model\RemoteAttributeInterface;
 use Konekt\SyliusSyncBundle\Model\RemoteImageInterface;
 use Konekt\SyliusSyncBundle\Model\RemoteProductInterface;
+use Konekt\SyliusSyncBundle\Model\RemoteProductTranslationInterface;
 use Konekt\SyliusSyncBundle\Model\TranslationInterface;
 
 class Product implements RemoteProductInterface
 {
+    /** @var RemoteImageInterface[] */
+    protected $images = [];
 
+    /** @var  string */
+    protected $sku;
+
+    /** @var  int */
+    protected $price;
+
+    /** @var  int */
+    protected $catalogPrice;
+
+    /** @var RemoteAttributeInterface[] */
+    protected $attributes = [];
+
+    /** @var RemoteProductTranslationInterface[] */
+    protected $translations = [];
 
     /**
      * Returns the images assigned to the THING
@@ -29,27 +46,35 @@ class Product implements RemoteProductInterface
      */
     public function getImages()
     {
-        // TODO: Implement getImages() method.
+        return $this->images;
     }
 
     /**
      * Add a remote image to the THING
      *
      * @param RemoteImageInterface $image
+     *
+     * @return Product  Returns a reference to itself
      */
     public function addImage(RemoteImageInterface $image)
     {
-        // TODO: Implement addImage() method.
+        $this->images[] = $image;
+
+        return $this;
     }
 
     /**
      * Set the product's sku
      *
      * @param   string $sku
+     *
+     * @return Product  Returns a reference to itself
      */
     public function setSku($sku)
     {
-        // TODO: Implement setSku() method.
+        $this->sku = $sku;
+
+        return $this;
     }
 
     /**
@@ -59,18 +84,21 @@ class Product implements RemoteProductInterface
      */
     public function getSku()
     {
-        return "FASZ";
-        // TODO: Implement getSku() method.
+        return $this->sku;
     }
 
     /**
      * Set the product's price
      *
      * @param   int $price
+     *
+     * @return Product  Returns a reference to itself
      */
     public function setPrice($price)
     {
-        // TODO: Implement setPrice() method.
+        $this->price = $price;
+
+        return $this;
     }
 
     /**
@@ -80,17 +108,21 @@ class Product implements RemoteProductInterface
      */
     public function getPrice()
     {
-        // TODO: Implement getPrice() method.
+        return $this->price;
     }
 
     /**
      * Set the product's catalog price
      *
      * @param   int $catalogPrice
+     *
+     * @return Product  Returns a reference to itself
      */
     public function setCatalogPrice($catalogPrice)
     {
-        // TODO: Implement setCatalogPrice() method.
+        $this->catalogPrice = $catalogPrice;
+
+        return $this;
     }
 
     /**
@@ -100,7 +132,7 @@ class Product implements RemoteProductInterface
      */
     public function getCatalogPrice()
     {
-        // TODO: Implement getCatalogPrice() method.
+        return $this->catalogPrice;
     }
 
     /**
@@ -110,17 +142,49 @@ class Product implements RemoteProductInterface
      */
     public function getAttributes()
     {
-        // TODO: Implement getAttributes() method.
+        return $this->attributes;
+    }
+
+    /**
+     * Returns an attribute by id/code
+     *
+     * @param   string  $id
+     *
+     * @return RemoteAttributeInterface|null
+     */
+    public function getAttribute($id)
+    {
+        foreach ($this->attributes as $attribute) {
+            if ($id == $attribute->getId()) {
+                return $attribute;
+            }
+        }
+
+        return null;
     }
 
     /**
      * Add an attribute to the product
      *
      * @param RemoteAttributeInterface $attribute
+     *
+     * @return Product  Returns a reference to itself
      */
     public function addAttribute(RemoteAttributeInterface $attribute)
     {
-        // TODO: Implement addAttribute() method.
+        $this->attributes[] = $attribute;
+
+        return $this;
+    }
+
+    /**
+     * Returns all the translations
+     *
+     * @return  TranslationInterface[]
+     */
+    public function getTranslations()
+    {
+        return $this->translations;
     }
 
     /**
@@ -128,11 +192,17 @@ class Product implements RemoteProductInterface
      *
      * @param   string $lang
      *
-     * @return  TranslationInterface
+     * @return  RemoteProductTranslationInterface|null
      */
     public function getTranslation($lang)
     {
-        // TODO: Implement getTranslation() method.
+        foreach ($this->translations as $translation) {
+            if ($lang == $translation->getLang()) {
+                return $translation;
+            }
+        }
+
+        return null;
     }
 
     /**
@@ -140,10 +210,12 @@ class Product implements RemoteProductInterface
      *
      * @param   TranslationInterface $translation
      *
-     * @return  TranslationInterface
+     * @return  Product  Returns a reference to itself
      */
     public function addTranslation(TranslationInterface $translation)
     {
-        // TODO: Implement addTranslation() method.
+        $this->translations[] = $translation;
+
+        return $this;
     }
 }

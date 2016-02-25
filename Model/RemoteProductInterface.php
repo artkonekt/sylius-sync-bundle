@@ -69,6 +69,16 @@ interface RemoteProductInterface extends TranslatableInterface, ImageableInterfa
 
 
     /**
+     * Returns an attribute by id/code
+     *
+     * @param   string  $id
+     *
+     * @return RemoteAttributeInterface|null
+     */
+    public function getAttribute($id);
+
+
+    /**
      * Add an attribute to the product
      *
      * @param RemoteAttributeInterface $attribute
