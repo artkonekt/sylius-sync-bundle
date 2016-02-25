@@ -1,5 +1,6 @@
 # Sylius Synchronization Bundle
 
+```
 Product:
     sku
     name|tr
@@ -11,3 +12,4 @@ Product:
     options
     images
     shipping_category
+```
