@@ -5,13 +5,15 @@
  * @author      Attila Fulop
  * @copyright   Copyright (c) 2016 Storm Storez Srl-d
  * @license     Proprietary
- * @version     2016-02-25
+ * @version     2016-02-26
  * @since       2016-02-25
  */
 
 
-namespace Konekt\SyliusSyncBundle\Model;
+namespace Konekt\SyliusSyncBundle\Model\Remote\Product;
 
+use Konekt\SyliusSyncBundle\Model\Translation\TranslatableInterface;
+use Konekt\SyliusSyncBundle\Model\Remote\Image\ImageableInterface;
 
 interface RemoteProductInterface extends TranslatableInterface, ImageableInterface
 {
@@ -72,10 +74,11 @@ interface RemoteProductInterface extends TranslatableInterface, ImageableInterfa
      * Returns an attribute by id/code
      *
      * @param   string  $id
+     * @param   bool    $create     Whether or not to create an instance on the fly if it doesn't yet exists
      *
      * @return RemoteAttributeInterface|null
      */
-    public function getAttribute($id);
+    public function getAttribute($id, $create = false);
 
 
     /**

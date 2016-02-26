@@ -5,24 +5,21 @@
  * @author      Attila Fulop
  * @copyright   Copyright (c) 2016 Storm Storez Srl-d
  * @license     Proprietary
- * @version     2016-02-25
+ * @version     2016-02-26
  * @since       2016-02-25
  */
 
 
-namespace Konekt\SyliusSyncBundle\Model\Remote;
+namespace Konekt\SyliusSyncBundle\Model\Remote\Product;
 
 
-use Konekt\SyliusSyncBundle\Model\RemoteAttributeInterface;
-use Konekt\SyliusSyncBundle\Model\RemoteImageInterface;
-use Konekt\SyliusSyncBundle\Model\RemoteProductInterface;
-use Konekt\SyliusSyncBundle\Model\RemoteProductTranslationInterface;
-use Konekt\SyliusSyncBundle\Model\TranslationInterface;
+use Konekt\SyliusSyncBundle\Model\Remote\Image\ImageableTrait;
+use Konekt\SyliusSyncBundle\Model\Translation\TranslatableTrait;
 
 class Product implements RemoteProductInterface
 {
-    /** @var RemoteImageInterface[] */
-    protected $images = [];
+    use TranslatableTrait;
+    use ImageableTrait;
 
     /** @var  string */
     protected $sku;
@@ -36,39 +33,12 @@ class Product implements RemoteProductInterface
     /** @var RemoteAttributeInterface[] */
     protected $attributes = [];
 
-    /** @var RemoteProductTranslationInterface[] */
-    protected $translations = [];
-
-    /**
-     * Returns the images assigned to the THING
-     *
-     * @return RemoteImageInterface[]
-     */
-    public function getImages()
-    {
-        return $this->images;
-    }
-
-    /**
-     * Add a remote image to the THING
-     *
-     * @param RemoteImageInterface $image
-     *
-     * @return Product  Returns a reference to itself
-     */
-    public function addImage(RemoteImageInterface $image)
-    {
-        $this->images[] = $image;
-
-        return $this;
-    }
-
     /**
      * Set the product's sku
      *
      * @param   string $sku
      *
-     * @return Product  Returns a reference to itself
+     * @return  static  Returns a reference to itself
      */
     public function setSku($sku)
     {
@@ -92,7 +62,7 @@ class Product implements RemoteProductInterface
      *
      * @param   int $price
      *
-     * @return Product  Returns a reference to itself
+     * @return  static  Returns a reference to itself
      */
     public function setPrice($price)
     {
@@ -116,7 +86,7 @@ class Product implements RemoteProductInterface
      *
      * @param   int $catalogPrice
      *
-     * @return Product  Returns a reference to itself
+     * @return  static  Returns a reference to itself
      */
     public function setCatalogPrice($catalogPrice)
     {
@@ -149,15 +119,24 @@ class Product implements RemoteProductInterface
      * Returns an attribute by id/code
      *
      * @param   string  $id
+     * @param   bool    $create     Whether or not to create an instance on the fly if it doesn't yet exists
      *
      * @return RemoteAttributeInterface|null
      */
-    public function getAttribute($id)
+    public function getAttribute($id, $create = false)
     {
         foreach ($this->attributes as $attribute) {
             if ($id == $attribute->getId()) {
                 return $attribute;
             }
+        }
+
+        if ($create) {
+            $attribute = new Attribute();
+            $attribute->setId($id);
+            $this->addAttribute($attribute);
+
+            return $attribute;
         }
 
         return null;
@@ -178,44 +157,13 @@ class Product implements RemoteProductInterface
     }
 
     /**
-     * Returns all the translations
+     * Returns the actual translation class
      *
-     * @return  TranslationInterface[]
+     * @return string
      */
-    public function getTranslations()
+    public function getTranslationClass()
     {
-        return $this->translations;
+        return __NAMESPACE__ . '\\ProductTranslation';
     }
 
-    /**
-     * Returns the translation in a given language
-     *
-     * @param   string $lang
-     *
-     * @return  RemoteProductTranslationInterface|null
-     */
-    public function getTranslation($lang)
-    {
-        foreach ($this->translations as $translation) {
-            if ($lang == $translation->getLang()) {
-                return $translation;
-            }
-        }
-
-        return null;
-    }
-
-    /**
-     * Adds a new translation
-     *
-     * @param   TranslationInterface $translation
-     *
-     * @return  Product  Returns a reference to itself
-     */
-    public function addTranslation(TranslationInterface $translation)
-    {
-        $this->translations[] = $translation;
-
-        return $this;
-    }
 }
