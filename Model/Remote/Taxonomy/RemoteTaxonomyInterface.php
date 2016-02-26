@@ -32,4 +32,27 @@ interface RemoteTaxonomyInterface extends TranslatableInterface, ImageableInterf
     public function getId();
 
 
+    /**
+     * Returns the top level taxons
+     *
+     * @return RemoteTaxonInterface[]
+     */
+    public function getTaxons();
+
+    /**
+     * Returns a taxon by id
+     *
+     * @param   string  $id
+     *
+     * @return RemoteTaxonInterface|null
+     */
+    public function findTaxon($id);
+
+    /**
+     * Add a new top level taxon to the taxonomy
+     *
+     * @param RemoteTaxonInterface $taxon
+     */
+    public function addTaxon(RemoteTaxonInterface $taxon);
+
 }

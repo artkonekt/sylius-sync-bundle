@@ -14,8 +14,9 @@ namespace Konekt\SyliusSyncBundle\Model\Remote\Taxonomy;
 
 use Konekt\SyliusSyncBundle\Model\Remote\Image\ImageableInterface;
 use Konekt\SyliusSyncBundle\Model\Translation\TranslatableInterface;
+use Konekt\SyliusSyncBundle\Model\Tree\TreeNodeInterface;
 
-interface RemoteTaxonInterface extends TranslatableInterface, ImageableInterface
+interface RemoteTaxonInterface extends TranslatableInterface, ImageableInterface, TreeNodeInterface
 {
     /**
      * Set the taxonomy the taxon belongs to
@@ -45,5 +46,7 @@ interface RemoteTaxonInterface extends TranslatableInterface, ImageableInterface
      * @return string
      */
     public function getId();
+
+
 
 }

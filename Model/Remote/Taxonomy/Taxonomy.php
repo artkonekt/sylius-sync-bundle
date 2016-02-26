@@ -24,6 +24,9 @@ class Taxonomy implements RemoteTaxonomyInterface
     /** @var  string */
     protected $id;
 
+    /** @var  RemoteTaxonInterface[] */
+    protected $taxons = [];
+
     /**
      * Set the taxonomy's id
      *
@@ -56,5 +59,41 @@ class Taxonomy implements RemoteTaxonomyInterface
     public function getTranslationClass()
     {
         return __NAMESPACE__ . '\\TaxonomyTranslation';
+    }
+
+    /**
+     * Returns the top level taxons
+     *
+     * @return RemoteTaxonInterface[]
+     */
+    public function getTaxons()
+    {
+        return $this->taxons;
+    }
+
+    /**
+     * Returns a taxon by id
+     *
+     * @param   string $id
+     *
+     * @return RemoteTaxonInterface|null
+     */
+    public function findTaxon($id)
+    {
+        // TODO: Implement findTaxon() method.
+    }
+
+    /**
+     * Add a new top level taxon to the taxonomy
+     *
+     * @param RemoteTaxonInterface $taxon
+     *
+     * @return  static
+     */
+    public function addTaxon(RemoteTaxonInterface $taxon)
+    {
+        $this->taxons[] = $taxon;
+
+        return $this;
     }
 }

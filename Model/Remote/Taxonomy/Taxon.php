@@ -15,11 +15,13 @@ namespace Konekt\SyliusSyncBundle\Model\Remote\Taxonomy;
 
 use Konekt\SyliusSyncBundle\Model\Remote\Image\ImageableTrait;
 use Konekt\SyliusSyncBundle\Model\Translation\TranslatableTrait;
+use Konekt\SyliusSyncBundle\Model\Tree\TreeNodeTrait;
 
 class Taxon implements RemoteTaxonInterface
 {
     use ImageableTrait;
     use TranslatableTrait;
+    use TreeNodeTrait;
 
     /** @var  string */
     protected $id;
@@ -76,6 +78,26 @@ class Taxon implements RemoteTaxonInterface
     }
 
     /**
+     * Find a child item by id
+     *
+     * @param   string  $id
+     *
+     * @return  RemoteTaxonInterface|null
+     */
+    public function findChild($id)
+    {
+        foreach ($this->getChildren() as $child) {
+            $result = $this->findChildInNode($child, $id);
+
+            if ($result) {
+                return $result;
+            }
+        }
+
+        return null;
+    }
+
+    /**
      * Returns the actual translation class
      *
      * @return string
@@ -83,5 +105,29 @@ class Taxon implements RemoteTaxonInterface
     public function getTranslationClass()
     {
         return __NAMESPACE__ . '\\TaxonomyTranslation';
+    }
+
+    /**
+     * @param static    $node
+     * @param string    $searchId
+     *
+     * @return mixed
+     */
+    private function findChildInNode($node, $searchId)
+    {
+        if ($searchId == $node->getId()) {
+            return $node;
+        }
+
+        if ($node->hasChildren()) {
+            foreach ($node->getChildren() as $child) {
+                $result = $this->findChildInNode($child, $searchId);
+                if ($result) {
+                    return $result;
+                }
+            }
+        }
+
+        return null;
     }
 }
