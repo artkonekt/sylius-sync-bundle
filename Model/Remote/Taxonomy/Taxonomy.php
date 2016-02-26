@@ -1,6 +1,6 @@
 <?php
 /**
- * Attribute.php
+ * Taxonomy.php
  *
  * @author      Attila Fulop
  * @copyright   Copyright (c) 2016 Storm Storez Srl-d
@@ -10,19 +10,22 @@
  */
 
 
-namespace Konekt\SyliusSyncBundle\Model\Remote\Product;
+namespace Konekt\SyliusSyncBundle\Model\Remote\Taxonomy;
 
+
+use Konekt\SyliusSyncBundle\Model\Remote\Image\ImageableTrait;
 use Konekt\SyliusSyncBundle\Model\Translation\TranslatableTrait;
 
-class Attribute implements RemoteAttributeInterface
+class Taxonomy implements RemoteTaxonomyInterface
 {
+    use ImageableTrait;
     use TranslatableTrait;
 
     /** @var  string */
     protected $id;
 
     /**
-     * Set the attribute's id
+     * Set the taxonomy's id
      *
      * @param   string $id
      *
@@ -36,7 +39,7 @@ class Attribute implements RemoteAttributeInterface
     }
 
     /**
-     * Returns the attribute's id
+     * Returns the taxonomy's id
      *
      * @return string
      */
@@ -52,7 +55,6 @@ class Attribute implements RemoteAttributeInterface
      */
     public function getTranslationClass()
     {
-        return __NAMESPACE__ . '\\AttributeTranslation';
+        return __NAMESPACE__ . '\\TaxonomyTranslation';
     }
-
 }

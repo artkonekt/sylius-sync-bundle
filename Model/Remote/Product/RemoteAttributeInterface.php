@@ -12,6 +12,8 @@
 
 namespace Konekt\SyliusSyncBundle\Model\Remote\Product;
 
+use Konekt\SyliusSyncBundle\Model\Translation\TranslatableInterface;
+
 
 interface RemoteAttributeInterface extends TranslatableInterface
 {

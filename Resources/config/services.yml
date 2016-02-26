@@ -1,12 +1,22 @@
 parameters:
     konekt_sylius_sync.remote_product.class: Konekt\SyliusSyncBundle\Model\Remote\Product\Product
     konekt_sylius_sync.remote_product.factory.class: Konekt\SyliusSyncBundle\Model\Remote\Product\ProductFactory
+
     konekt_sylius_sync.remote_image.factory.class: Konekt\SyliusSyncBundle\Model\Remote\Image\ImageFactory
+
+    konekt_sylius_sync.remote_taxonomy.class: Konekt\SyliusSyncBundle\Model\Remote\Taxonomy\Taxonomy
+    konekt_sylius_sync.remote_taxonomy.factory.class: Konekt\SyliusSyncBundle\Model\Remote\Taxonomy\TaxonomyFactory
 
 services:
     konekt_sylius_sync.remote_product.factory:
         class: %konekt_sylius_sync.remote_product.factory.class%
         arguments:
             - %konekt_sylius_sync.remote_product.class%
+
     konekt_sylius_sync.remote_image.factory:
             class: %konekt_sylius_sync.remote_image.factory.class%
+
+    konekt_sylius_sync.remote_taxonomy.factory:
+            class: %konekt_sylius_sync.remote_taxonomy.factory.class%
+            arguments:
+                - %konekt_sylius_sync.remote_taxonomy.class%
