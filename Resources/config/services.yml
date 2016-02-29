@@ -7,6 +7,9 @@ parameters:
     konekt_sylius_sync.remote_taxonomy.class: Konekt\SyliusSyncBundle\Model\Remote\Taxonomy\Taxonomy
     konekt_sylius_sync.remote_taxonomy.factory.class: Konekt\SyliusSyncBundle\Model\Remote\Taxonomy\TaxonomyFactory
 
+    konekt_sylius_sync.remote_taxon.class: Konekt\SyliusSyncBundle\Model\Remote\Taxonomy\Taxon
+    konekt_sylius_sync.remote_taxon.factory.class: Konekt\SyliusSyncBundle\Model\Remote\Taxonomy\TaxonFactory
+
 services:
     konekt_sylius_sync.remote_product.factory:
         class: %konekt_sylius_sync.remote_product.factory.class%
@@ -20,3 +23,8 @@ services:
             class: %konekt_sylius_sync.remote_taxonomy.factory.class%
             arguments:
                 - %konekt_sylius_sync.remote_taxonomy.class%
+
+    konekt_sylius_sync.remote_taxon.factory:
+            class: %konekt_sylius_sync.remote_taxon.factory.class%
+            arguments:
+                - %konekt_sylius_sync.remote_taxon.class%
