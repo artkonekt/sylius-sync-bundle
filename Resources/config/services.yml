@@ -10,6 +10,9 @@ parameters:
     konekt_sylius_sync.remote_taxon.class: Konekt\SyliusSyncBundle\Model\Remote\Taxonomy\Taxon
     konekt_sylius_sync.remote_taxon.factory.class: Konekt\SyliusSyncBundle\Model\Remote\Taxonomy\TaxonFactory
 
+    konekt_sylius_sync.remote_stock.class: Konekt\SyliusSyncBundle\Model\Remote\Stock\Stock
+    konekt_sylius_sync.remote_stock.factory.class: Konekt\SyliusSyncBundle\Model\Remote\Stock\StockFactory
+
 services:
     konekt_sylius_sync.remote_product.factory:
         class: %konekt_sylius_sync.remote_product.factory.class%
@@ -28,3 +31,8 @@ services:
             class: %konekt_sylius_sync.remote_taxon.factory.class%
             arguments:
                 - %konekt_sylius_sync.remote_taxon.class%
+
+    konekt_sylius_sync.remote_stock.factory:
+            class: %konekt_sylius_sync.remote_stock.factory.class%
+            arguments:
+                - %konekt_sylius_sync.remote_stock.class%
