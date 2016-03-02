@@ -15,22 +15,8 @@ namespace Konekt\SyliusSyncBundle\Model\Remote\Product;
 use Konekt\SyliusSyncBundle\Model\Translation\TranslatableInterface;
 use Konekt\SyliusSyncBundle\Model\Remote\Image\ImageableInterface;
 
-interface RemoteProductInterface extends TranslatableInterface, ImageableInterface
+interface RemoteProductInterface extends TranslatableInterface, ImageableInterface, SkuInterface
 {
-    /**
-     * Set the product's sku
-     *
-     * @param   string  $sku
-     */
-    public function setSku($sku);
-
-    /**
-     * Returns the product's sku
-     *
-     * @return string
-     */
-    public function getSku();
-
 
     /**
      * Set the product's price

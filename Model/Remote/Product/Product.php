@@ -20,9 +20,7 @@ class Product implements RemoteProductInterface
 {
     use TranslatableTrait;
     use ImageableTrait;
-
-    /** @var  string */
-    protected $sku;
+    use SkuTrait;
 
     /** @var  int */
     protected $price;
@@ -32,30 +30,6 @@ class Product implements RemoteProductInterface
 
     /** @var RemoteAttributeInterface[] */
     protected $attributes = [];
-
-    /**
-     * Set the product's sku
-     *
-     * @param   string $sku
-     *
-     * @return  static  Returns a reference to itself
-     */
-    public function setSku($sku)
-    {
-        $this->sku = $sku;
-
-        return $this;
-    }
-
-    /**
-     * Returns the product's sku
-     *
-     * @return string
-     */
-    public function getSku()
-    {
-        return $this->sku;
-    }
 
     /**
      * Set the product's price
