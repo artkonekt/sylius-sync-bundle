@@ -104,7 +104,7 @@ class Taxon implements RemoteTaxonInterface
      */
     public function getTranslationClass()
     {
-        return __NAMESPACE__ . '\\TaxonomyTranslation';
+        return __NAMESPACE__ . '\\TaxonTranslation';
     }
 
     /**
