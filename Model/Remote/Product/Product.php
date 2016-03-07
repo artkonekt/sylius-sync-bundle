@@ -3,9 +3,10 @@
  * Product.php
  *
  * @author      Attila Fulop
+ * @author      Sandor Teglas
  * @copyright   Copyright (c) 2016 Storm Storez Srl-d
  * @license     Proprietary
- * @version     2016-02-26
+ * @version     2016-03-07
  * @since       2016-02-25
  */
 
@@ -27,6 +28,9 @@ class Product implements RemoteProductInterface
 
     /** @var  int */
     protected $catalogPrice;
+
+    /** @var array var */
+    protected $taxons = [];
 
     /** @var RemoteAttributeInterface[] */
     protected $attributes = [];
@@ -77,6 +81,24 @@ class Product implements RemoteProductInterface
     public function getCatalogPrice()
     {
         return $this->catalogPrice;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function setTaxonIds(array $taxonIds)
+    {
+        $this->taxonIds = $taxonIds;
+
+        return $this;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function getTaxonIds()
+    {
+        return $this->taxonIds;
     }
 
     /**

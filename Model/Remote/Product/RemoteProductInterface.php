@@ -3,9 +3,10 @@
  * RemoteProductInterface.php
  *
  * @author      Attila Fulop
+ * @author      Sandor Teglas
  * @copyright   Copyright (c) 2016 Storm Storez Srl-d
  * @license     Proprietary
- * @version     2016-02-26
+ * @version     2016-03-07
  * @since       2016-02-25
  */
 
@@ -47,6 +48,22 @@ interface RemoteProductInterface extends TranslatableInterface, ImageableInterfa
      */
     public function getCatalogPrice();
 
+
+    /**
+     * Set the taxon IDs this product belongs to.
+     *
+     * @param   array   $taxonIds
+     *
+     * @return  static  Returns a reference to itself
+     */
+    public function setTaxonIds(array $taxonIds);
+
+    /**
+     * Returns the taxon IDs this product belongs to.
+     *
+     * @return array
+     */
+    public function getTaxonIds();
 
     /**
      * Returns the attributes set on the product
