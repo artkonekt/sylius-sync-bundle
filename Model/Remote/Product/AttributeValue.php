@@ -1,21 +1,19 @@
 <?php
 /**
- * Contains the Attribute class.
+ * Contains the AttributeValue class.
  *
- * @author      Attila Fulop
  * @author      Sandor Teglas
  * @copyright   Copyright (c) 2016 Storm Storez Srl-d
  * @license     Proprietary
  * @version     2016-03-08
- * @since       2016-02-26
+ * @since       2016-03-08
  */
-
 
 namespace Konekt\SyliusSyncBundle\Model\Remote\Product;
 
 use Konekt\SyliusSyncBundle\Model\Translation\TranslatableTrait;
 
-class Attribute implements RemoteAttributeInterface
+class AttributeValue implements RemoteAttributeValueInterface
 {
     use TranslatableTrait;
     use IdTrait;
@@ -27,7 +25,7 @@ class Attribute implements RemoteAttributeInterface
      */
     public function getTranslationClass()
     {
-        return __NAMESPACE__ . '\\AttributeTranslation';
+        return __NAMESPACE__ . '\\AttributeValueTranslation';
     }
 
 }
