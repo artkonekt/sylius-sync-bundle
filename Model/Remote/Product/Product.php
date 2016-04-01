@@ -6,7 +6,7 @@
  * @author      Sandor Teglas
  * @copyright   Copyright (c) 2016 Storm Storez Srl-d
  * @license     Proprietary
- * @version     2016-03-07
+ * @version     2016-04-01
  * @since       2016-02-25
  */
 
@@ -25,6 +25,9 @@ class Product implements RemoteProductInterface
 
     /** @var  int */
     protected $price;
+
+    /** @var  int */
+    protected $vatPercent;
 
     /** @var  int */
     protected $catalogPrice;
@@ -57,6 +60,28 @@ class Product implements RemoteProductInterface
     public function getPrice()
     {
         return $this->price;
+    }
+
+    /**
+     * Set the VAT percent included in gross price.
+     *
+     * @param   int  $vatPercent
+     *
+     * @return  static  Returns a reference to itself
+     */
+    public function setVatPercent($vatPercent)
+    {
+        $this->vatPercent = $vatPercent;
+
+        return $this;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function getVatPercent()
+    {
+        return $this->vatPercent;
     }
 
     /**

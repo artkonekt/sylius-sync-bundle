@@ -6,7 +6,7 @@
  * @author      Sandor Teglas
  * @copyright   Copyright (c) 2016 Storm Storez Srl-d
  * @license     Proprietary
- * @version     2016-03-07
+ * @version     2016-04-01
  * @since       2016-02-25
  */
 
@@ -20,20 +20,35 @@ interface RemoteProductInterface extends TranslatableInterface, ImageableInterfa
 {
 
     /**
-     * Set the product's price
+     * Set the product's gross price
      *
      * @param   int  $price
      */
     public function setPrice($price);
 
     /**
-     * Returns the product's price
+     * Returns the product's gross price
      *
      * @return int
      */
     public function getPrice();
 
 
+    /**
+     * Set the VAT percent included in gross price.
+     *
+     * @param   int  $vatPercent
+     */
+    public function setVatPercent($vatPercent);
+
+    /**
+     * Returns the VAT percent included in gross price.
+     *
+     * @return int
+     */
+    public function getVatPercent();
+    
+    
     /**
      * Set the product's catalog price
      *
