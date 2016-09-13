@@ -32,6 +32,9 @@ class Product implements RemoteProductInterface
     /** @var  int */
     protected $catalogPrice;
 
+    /** @var  int */
+    protected $specialPrice;
+
     /** @var array var */
     protected $taxons = [];
 
@@ -106,6 +109,30 @@ class Product implements RemoteProductInterface
     public function getCatalogPrice()
     {
         return $this->catalogPrice;
+    }
+
+    /**
+     * Set the product's special price
+     *
+     * @param   int     $specialPrice
+     *
+     * @return  static  Returns a reference to itself
+     */
+    public function setSpecialPrice($specialPrice)
+    {
+        $this->specialPrice = $specialPrice;
+
+        return $this;
+    }
+
+    /**
+     * Returns the product's special price
+     *
+     * @return int
+     */
+    public function getSpecialPrice()
+    {
+        return $this->specialPrice;
     }
 
     /**

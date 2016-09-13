@@ -63,6 +63,19 @@ interface RemoteProductInterface extends TranslatableInterface, ImageableInterfa
      */
     public function getCatalogPrice();
 
+    /**
+     * Set the product's special price
+     *
+     * @param   int  $specialPrice
+     */
+    public function setSpecialPrice($specialPrice);
+
+    /**
+     * Returns the product's special price
+     *
+     * @return int
+     */
+    public function getSpecialPrice();
 
     /**
      * Set the taxon IDs this product belongs to.
